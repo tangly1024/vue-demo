@@ -6,21 +6,27 @@
       <p :class="{finished: item.finished}" @click="toggleFinish(item)">{{item.label}}</p>
     </div>
     <h2>Essential Links</h2>
+
+
+    <component-a test="656666"></component-a>
+
   </div>
 </template>
 <script>
 import Store from './store'
+import ComponentA from './ComponentA'
 console.log(Store)
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'TODO LIST',
+      msg: 'TODO LIST asd ',
       newItem: '',
       items: Store.fetch()
     }
   },
+  components: { ComponentA },
   methods: {
     toggleFinish: function (item) {
       // alert(item.label)
