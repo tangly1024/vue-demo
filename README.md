@@ -6,6 +6,7 @@
 
 ``` bash
 # install dependencies
+npm config set registry https://registry.npm.taobao.org
 npm install
 
 # serve with hot reload at localhost:8080
