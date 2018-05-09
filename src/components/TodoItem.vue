@@ -1,6 +1,6 @@
 <template>
 
-<li @click="handleClick" style="cursor: pointer" title="点击删除">{{content.name}}</li>
+<li @click="handleClick" class="red" style="cursor: pointer" title="点击删除">{{content.name}}</li>
 
 </template>
 
@@ -19,6 +19,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.red {
+  color: red;
+}
 </style>
