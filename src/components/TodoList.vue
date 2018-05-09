@@ -20,6 +20,7 @@
 
 <script>
 import TodoItem from './TodoItem'
+import Store from './store'
 
 export default {
   name: 'TodoList',
@@ -34,6 +35,9 @@ export default {
       items: []
   	}
   },
+  mounted: function(){
+    this.items = Store.fetch('todo-items')
+  },
   methods: {
   	submit: function(){
         this.items.push({name: this.newItem, finished: false})
@@ -43,6 +47,11 @@ export default {
   		console.log('子组件 ' + index + ' 请求删除')
         this.items.splice(index,1);
   	}
+  },
+  watch: {
+    items: function(newVal){
+      Store.save('todo-items',this.items)
+    }
   }
 }
 </script>
