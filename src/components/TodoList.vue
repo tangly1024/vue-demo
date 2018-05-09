@@ -3,7 +3,8 @@
   <p  :class="{title : title}" @click="title = ! title">TODO LIST</p>
   <input v-model="newItem" @keyup.enter="submit">
   <button @click="submit">新增</button>
-  <!--用key值提升渲染性能-->
+  <button @click="goBack">返回上一页</button>
+  
   <ul >
     <todo-item
         v-for="(item,index) in items"
@@ -36,17 +37,25 @@ export default {
   	}
   },
   mounted: function(){
+    console.log(this.$router)
     this.items = Store.fetch('todo-items')
   },
   methods: {
   	submit: function(){
-        this.items.push({name: this.newItem, finished: false})
+        this.items.push(
+          {name: this.newItem, finished: false}
+          )
         this.newItem = '';
-      },
+    },
   	handleDelete: function(index){
   		console.log('子组件 ' + index + ' 请求删除')
         this.items.splice(index,1);
-  	}
+  	},
+    goBack:  function() {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    }
   },
   watch: {
     items: function(newVal){
